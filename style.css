@@ -741,6 +741,13 @@ text-align: center;
    justify-content: end;
 }
 
+@media (min-width:768px){
+   .nav-socials{
+      display: flex;
+      justify-content: center;
+   }
+}
+
 .nav-links2{
    list-style: none;
    display: flex;
@@ -758,4 +765,13 @@ text-align: center;
    color: red;
 }
 
-
+@media (min-width:768px){
+   .last{
+      width: 100%;
+      height: auto;
+   }
+   .last img{
+      width: 100%;
+      height: auto;
+   }
+}
