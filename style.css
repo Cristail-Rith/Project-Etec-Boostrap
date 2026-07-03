@@ -347,6 +347,14 @@ a{
    
 }
 
+@media (min-width:768px){
+   .section3{
+      width: 100%;
+      height: auto;
+      padding: 5px;
+   }
+}
+
 .section3-container{
    display: grid;
    grid-template-columns: repeat(3, 1fr);
