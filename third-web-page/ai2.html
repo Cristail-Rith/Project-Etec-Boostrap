@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Product Dropdown Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Oswald", sans-serif;
+    background: #fff;
+  }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    position: relative;
+    z-index: 100;
+  }
+
+  .nav-list1 {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+  }
+
+  .nav-item1 {
+    position: relative; /* anchors the dropdown under THIS item */
+  }
+
+  .nav-item1 > a {
+    display: block;
+    padding: 22px 0;
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+
+  /* while dropdown is open, keep the trigger red like image 2 */
+  .nav-item1:hover > a {
+    color: rgb(255, 40, 40);
+  }
+
+  /* ===== SIMPLE DROPDOWN PANEL ===== */
+  .dropdown1 {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 220px;
+    background-color: #f5f5f5;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+
+    padding: 25px 0 15px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .nav-item1:hover .dropdown1 {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .dropdown1 ul {
+    list-style: none;
+  }
+
+  .dropdown1 ul li a {
+    display: block;
+    padding: 14px 25px;
+    color: #111;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    position: relative;
+  }
+
+  /* underline-on-hover, same language as your .a1::after pattern */
+  .dropdown1 ul li a::after {
+    content: '';
+    position: absolute;
+    left: 25px;
+    bottom: 10px;
+    width: 0;
+    height: 2px;
+    background-color: rgb(209, 9, 9);
+    transition: width 0.3s ease;
+  }
+
+  .dropdown1 ul li a:hover {
+    color: rgb(209, 9, 9);
+  }
+
+  .dropdown1 ul li a:hover::after {
+    width: calc(100% - 50px);
+  }
+
+  /* mark one item as "active" like Laptops in image 2 */
+
+  /* ===== demo page filler ===== */
+  .demo-hint {
+    color: #999;
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <ul class="nav-list1">
+
+    <li class="nav-item1">
+      <a href="#">Product</a>
+
+      <div class="dropdown1">
+        <ul>
+          <li><a href="#" class="active1">Laptops</a></li>
+          <li><a href="#">Phones</a></li>
+          <li><a href="#">Desktops</a></li>
+          <li><a href="#">Gaming Handhelds</a></li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="nav-item1"><a href="#">Innovation</a></li>
+    <li class="nav-item1"><a href="#">Downloads</a></li>
+    <li class="nav-item1"><a href="#">Community</a></li>
+    <li class="nav-item1"><a href="#">Support</a></li>
+
+  </ul>
+</nav>
+
+<p class="demo-hint">Hover over "Product" ↑ to see the dropdown</p>
+
+</body>
+</html>

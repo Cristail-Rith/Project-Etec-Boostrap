@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Product Mega Menu Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Oswald", sans-serif;
+    background: #111;
+  }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    border-bottom: 4px solid rgb(209, 9, 9);
+    position: relative;
+    z-index: 100;
+  }
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+  }
+
+  /* each nav item is the "hover zone" that owns its dropdown */
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-item > a {
+    display: block;
+    padding: 22px 0;
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .nav-item > a:hover {
+    color: rgb(255, 40, 40);
+  }
+
+  /* ===== THE MEGA MENU PANEL ===== */
+  .mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 10px);
+    width: 640px;
+    background-color: #0d0d0d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 3px solid rgb(209, 9, 9);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+
+    /* hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  /* the reveal: hovering the LI shows the menu inside it */
+  .nav-item:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0px);
+  }
+
+  .mega-col {
+    padding: 28px 22px;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .mega-col:last-child {
+    border-right: none;
+  }
+
+  .mega-col img {
+    width: 100%;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5));
+    transition: transform 0.3s ease;
+  }
+
+  .mega-col:hover img {
+    transform: translateY(-4px);
+  }
+
+  .mega-col h4 {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .mega-col ul {
+    list-style: none;
+  }
+
+  .mega-col ul li {
+    margin-bottom: 8px;
+  }
+
+  .mega-col ul li a {
+    color: rgb(170, 170, 170);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  .mega-col ul li a:hover {
+    color: rgb(255, 40, 40);
+  }
+
+  /* ===== demo page filler ===== */
+  .demo-hint {
+    color: #777;
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <ul class="nav-list">
+
+    <li class="nav-item">
+      <a href="#">Product</a>
+
+      <div class="mega-menu">
+        <div class="mega-col">
+          
+          <h4>Laptops</h4>
+          <ul>
+            <li><a href="#">ROG Strix</a></li>
+            <li><a href="#">ROG Zephyrus</a></li>
+            <li><a href="#">TUF Gaming</a></li>
+          </ul>
+        </div>
+
+        <div class="mega-col">
+          <img src="https://dlcdnwebimgs.asus.com/gain/94F80098-3E7B-4E48-9D5A-3B6E37D3B0B3/w800" alt="Phone">
+          <h4>Phones</h4>
+          <ul>
+            <li><a href="#">ROG Phone 9</a></li>
+            <li><a href="#">Zenfone</a></li>
+          </ul>
+        </div>
+
+        <div class="mega-col">
+          <img src="https://dlcdnwebimgs.asus.com/gain/CE0C1F1E-9C57-4E62-9AA4-77E831429D62/w800" alt="Monitor">
+          <h4>Monitors</h4>
+          <ul>
+            <li><a href="#">ROG Swift</a></li>
+            <li><a href="#">ROG Strix XG</a></li>
+          </ul>
+        </div>
+
+        <div class="mega-col">
+          <img src="https://dlcdnwebimgs.asus.com/gain/FDFFE426-0A29-40D5-8E26-C838EB26CA8F/w800" alt="Accessories">
+          <h4>Accessories</h4>
+          <ul>
+            <li><a href="#">Keyboards</a></li>
+            <li><a href="#">Mice</a></li>
+            <li><a href="#">Headsets</a></li>
+          </ul>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item"><a href="#">Innovation</a></li>
+    <li class="nav-item"><a href="#">Downloads</a></li>
+    <li class="nav-item"><a href="#">Community</a></li>
+    <li class="nav-item"><a href="#">What's Shot</a></li>
+    <li class="nav-item"><a href="#">Support</a></li>
+
+  </ul>
+</nav>
+
+<p class="demo-hint">Hover over "Product" ↑ to see the mega menu</p>
+
+</body>
+</html>
