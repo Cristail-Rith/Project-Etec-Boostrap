@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Animated Border Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Oswald", sans-serif;
+    background: #0a0a0a;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+  }
+
+  /* register the custom property so the browser knows it's an <angle>
+     and can smoothly interpolate it in an animation */
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes spin {
+    to { --angle: 360deg; }
+  }
+
+  /* ===== VERSION 1: animated border on a CARD ===== */
+  .glow-card {
+    position: relative;
+    width: 280px;
+    padding: 3px; /* this padding = border thickness */
+    border-radius: 16px;
+    background: conic-gradient(
+      from var(--angle),
+      #ff0000, #ff8800, #ffff00, #00ff88, #00cfff, #a855f7, #ff0000
+    );
+    animation: spin 3s linear infinite;
+  }
+
+  .glow-card-inner {
+    background: #111;
+    border-radius: 14px;
+    padding: 30px 24px;
+    color: #fff;
+    text-align: center;
+  }
+
+  .glow-card-inner h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  .glow-card-inner p {
+    font-size: 14px;
+    color: #999;
+    font-family: system-ui, sans-serif;
+  }
+
+  /* ===== VERSION 2: animated border on a BUTTON ===== */
+  .glow-btn {
+    position: relative;
+    display: inline-flex;
+    padding: 3px;
+    border-radius: 10px;
+    background: conic-gradient(
+      from var(--angle),
+      #ff0000, #ff8800, #ffff00, #00ff88, #00cfff, #a855f7, #ff0000
+    );
+    animation: spin 2.5s linear infinite;
+    cursor: pointer;
+  }
+
+  .glow-btn span {
+    background: #000;
+    color: #fff;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ===== VERSION 3: glow appears only on hover ===== */
+  .glow-hover {
+    position: relative;
+    padding: 3px;
+    border-radius: 10px;
+    background: #222; /* static border when not hovered */
+    transition: background 0.3s ease;
+  }
+
+  .glow-hover:hover {
+    background: conic-gradient(
+      from var(--angle),
+      #ff0000, #ff8800, #ffff00, #00ff88, #00cfff, #a855f7, #ff0000
+    );
+    animation: spin 2s linear infinite;
+  }
+
+  .glow-hover span {
+    display: block;
+    background: #000;
+    color: #fff;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+  <div class="glow-card">
+    <div class="glow-card-inner">
+      <h3>ROG STRIX</h3>
+      <p>Animated border, pure CSS, always spinning.</p>
+    </div>
+  </div>
+
+  <div class="glow-btn">
+    <span>Always On</span>
+  </div>
+
+  <div class="glow-hover">
+    <span>Hover Me</span>
+  </div>
+
+</body>
+</html>

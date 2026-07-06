@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Post Grid Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Oswald", sans-serif;
+    background: #141414;
+    padding: 60px 40px;
+  }
+
+  /* ===== GRID: 2 columns, each holding an image + text pair ===== */
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .post-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== LOAD-IN: each post fades/rises into place, staggered ===== */
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .post-item {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 30px;
+    align-items: start;
+    cursor: pointer;
+
+    opacity: 0;
+    animation: rise-in 0.6s ease forwards;
+  }
+
+  /* stagger: each card starts slightly after the previous one */
+  .post-item:nth-child(1) { animation-delay: 0.05s; }
+  .post-item:nth-child(2) { animation-delay: 0.2s; }
+  .post-item:nth-child(3) { animation-delay: 0.35s; }
+  .post-item:nth-child(4) { animation-delay: 0.5s; }
+
+  @media (max-width: 700px) {
+    .post-item {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== IMAGE: zoom + brighten on hover, clipped by overflow:hidden ===== */
+  .post-item .img-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .post-item .img-wrap::after {
+    /* a light sweep that slides across the image on hover */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.25),
+      transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .post-item:hover .img-wrap::after {
+    left: 130%;
+  }
+
+  .post-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.5s ease;
+  }
+
+  .post-item:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.08);
+  }
+
+  @media (max-width: 700px) {
+    .post-item img {
+      height: 220px;
+    }
+  }
+
+  .post-text {
+    position: relative;
+    padding-top: 4px;
+  }
+
+  /* the little gray tab -- slides out into a red accent bar on hover */
+  .post-text::before {
+    content: '';
+    position: absolute;
+    top: -34px;
+    right: 0;
+    width: 60px;
+    height: 6px;
+    background: #3a3a3a;
+    border-radius: 3px;
+    transition: width 0.35s ease, background 0.35s ease;
+  }
+
+  .post-item:hover .post-text::before {
+    width: 100%;
+    background: rgb(230, 30, 40);
+  }
+
+  .post-tag {
+    color: rgb(230, 30, 40);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    transition: letter-spacing 0.3s ease;
+  }
+
+  .post-item:hover .post-tag {
+    letter-spacing: 3px;
+  }
+
+  .post-title {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 16px;
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+
+  /* underline that grows in from the left on hover */
+  .post-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: rgb(230, 30, 40);
+    transition: width 0.4s ease;
+  }
+
+  .post-item:hover .post-title {
+    color: rgb(255, 230, 230);
+  }
+
+  .post-item:hover .post-title::after {
+    width: 100%;
+  }
+
+  .post-desc {
+    color: #9a9a9a;
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: system-ui, -apple-system, sans-serif;
+    transition: color 0.3s ease;
+  }
+
+  .post-item:hover .post-desc {
+    color: #c2c2c2;
+  }
+</style>
+</head>
+<body>
+
+<div class="post-grid">
+
+  <div class="post-item">
+    <div class="img-wrap"><img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=800&q=80" alt="Gamers with laptops"></div>
+    <div class="post-text">
+      <div class="post-tag">// Post</div>
+      <div class="post-title">Zephyrus vs Strix vs Flow: What's the difference between ROG laptops?</div>
+      <div class="post-desc">ROG builds laptops for every kind of gamer. Find out which one is right for you!</div>
+    </div>
+  </div>
+
+  <div class="post-item">
+    <div class="img-wrap"><img src="https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?w=800&q=80" alt="Gaming laptop with headset"></div>
+    <div class="post-text">
+      <div class="post-tag">// Post</div>
+      <div class="post-title">How to set up and optimize your new ROG gaming laptop</div>
+      <div class="post-desc">We know you're eager to get fragging right away. But if you want to truly customize your experience, here's how to tune your machine for peak power.</div>
+    </div>
+  </div>
+
+  <div class="post-item">
+    <div class="img-wrap"><img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800&q=80" alt="Gaming tablet"></div>
+    <div class="post-text">
+      <div class="post-tag">// Post</div>
+      <div class="post-title">Unbridled gaming power and unlimited versatility: hands-on with the ROG Flow Z13</div>
+      <div class="post-desc">We go hands-on with the ROG Flow Z13 gaming tablet to experience truly portable PC gaming.</div>
+    </div>
+  </div>
+
+  <div class="post-item">
+    <div class="img-wrap"><img src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?w=800&q=80" alt="Laptop with headset and mouse"></div>
+    <div class="post-text">
+      <div class="post-tag">// Post</div>
+      <div class="post-title">The new ROG Flow X16 melds premium power with a portable design</div>
+      <div class="post-desc">ROG amps up mobile portability and versatility with the powerful all-new Flow X16.</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

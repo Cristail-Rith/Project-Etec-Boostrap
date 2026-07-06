@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Post Grid Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Oswald", sans-serif;
+    background: #141414;
+    padding: 60px 40px;
+  }
+
+  /* ===== GRID: 2 columns, each holding an image + text pair ===== */
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .post-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* each post item is ITSELF a small grid: image | text */
+  .post-item {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 30px;
+    align-items: start;
+  }
+
+  @media (max-width: 700px) {
+    .post-item {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .post-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: 700px) {
+    .post-item img {
+      height: 220px;
+    }
+  }
+
+  .post-text {
+    position: relative;
+    padding-top: 4px;
+  }
+
+  /* the little gray tab in the top-right corner, like the screenshot */
+  .post-text::before {
+    content: '';
+    position: absolute;
+    top: -34px;
+    right: 0;
+    width: 60px;
+    height: 6px;
+    background: #3a3a3a;
+    border-radius: 3px;
+  }
+
+  .post-tag {
+    color: rgb(230, 30, 40);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .post-title {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 16px;
+  }
+
+  .post-desc {
+    color: #9a9a9a;
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="post-grid">
+
+  <div class="post-item">
+    <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=800&q=80" alt="Gamers with laptops">
+    <div class="post-text">
+      <div class="post-tag">// Post</div>
+      <div class="post-title">Zephyrus vs Strix vs Flow: What's the difference between ROG laptops?</div>
+      <div class="post-desc">ROG builds laptops for every kind of gamer. Find out which one is right for you!</div>
+    </div>
+  </div>
+
+  <div class="post-item">
+    <img src="https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?w=800&q=80" alt="Gaming laptop with headset">
+    <div class="post-text">
+      <div class="post-tag">// Post</div>
+      <div class="post-title">How to set up and optimize your new ROG gaming laptop</div>
+      <div class="post-desc">We know you're eager to get fragging right away. But if you want to truly customize your experience, here's how to tune your machine for peak power.</div>
+    </div>
+  </div>
+
+  <div class="post-item">
+    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800&q=80" alt="Gaming tablet">
+    <div class="post-text">
+      <div class="post-tag">// Post</div>
+      <div class="post-title">Unbridled gaming power and unlimited versatility: hands-on with the ROG Flow Z13</div>
+      <div class="post-desc">We go hands-on with the ROG Flow Z13 gaming tablet to experience truly portable PC gaming.</div>
+    </div>
+  </div>
+
+  <div class="post-item">
+    <img src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?w=800&q=80" alt="Laptop with headset and mouse">
+    <div class="post-text">
+      <div class="post-tag">// Post</div>
+      <div class="post-title">The new ROG Flow X16 melds premium power with a portable design</div>
+      <div class="post-desc">ROG amps up mobile portability and versatility with the powerful all-new Flow X16.</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
