@@ -862,7 +862,7 @@ img, .img-card1, .card4, .img-card2 {
    justify-content: end;
 }
 
-@media (min-width:768px){
+@media (max-width:768px){
    .nav-socials{
       display: flex;
       justify-content: center;
@@ -876,6 +876,7 @@ img, .img-card1, .card4, .img-card2 {
    display: flex;
    gap: 30px; 
    padding: 20px;
+
 }
 
 .nav-links2 a{
